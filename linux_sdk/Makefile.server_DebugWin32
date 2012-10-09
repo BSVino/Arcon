@@ -1,0 +1,650 @@
+SERVER_SRC_DIR=../server
+SERVER_OBJ_DIR=obj/$(NAME)_$(ARCH)/server
+SERVER___SRC_COMMON_SRC_DIR=../server/../../src/common
+SERVER___SRC_COMMON_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/src/common
+SERVER___SRC_PUBLIC_SRC_DIR=../server/../../src/public
+SERVER___SRC_PUBLIC_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/src/public
+SERVER___SRC_PUBLIC_KEYFRAME_SRC_DIR=../server/../../src/public/keyframe
+SERVER___SRC_PUBLIC_KEYFRAME_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/src/public/keyframe
+SERVER___SRC_PUBLIC_TIER0_SRC_DIR=../server/../../src/public/tier0
+SERVER___SRC_PUBLIC_TIER0_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/src/public/tier0
+SERVER___SRC_TIER1_SRC_DIR=../server/../../src/tier1
+SERVER___SRC_TIER1_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/src/tier1
+SERVER__SHARED_SRC_DIR=../server/../shared
+SERVER__SHARED_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/shared
+SERVER__SHARED_CF_SRC_DIR=../server/../shared/cf
+SERVER__SHARED_CF_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/shared/cf
+SERVER__SHARED_CF_BOT_SRC_DIR=../server/../shared/cf/bot
+SERVER__SHARED_CF_BOT_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/shared/cf/bot
+SERVER__SHARED_MULTIPLAYER_SRC_DIR=../server/../shared/multiplayer
+SERVER__SHARED_MULTIPLAYER_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/shared/multiplayer
+SERVER_CF_SRC_DIR=../server/cf
+SERVER_CF_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/cf
+SERVER_CF_BOT_SRC_DIR=../server/cf/bot
+SERVER_CF_BOT_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/cf/bot
+SERVER_CF_BOT_STATES_SRC_DIR=../server/cf/bot/states
+SERVER_CF_BOT_STATES_OBJ_DIR=obj/$(NAME)_$(ARCH)/server/cf/bot/states
+
+
+INCLUDES=-I../server/../shared/multiplayer -I../server/../../src/public/tier1 -I../server/../shared/cf -I../server/. -I../server/../../src/public -I../server/../shared -I../server/../../src/utils/common -I../server/../server -I../server/../server/cf -I../server/../../src/public/tier0 -I../server/../../src/common -I../server/../shared/cf/bot -I../server/../server/cf/bot -DCF_DLL -D_DEBUG -DALLOW_DEVELOPMENT_CVARS -Dfopen=dont_use_fopen -DBOTS -DUSES_SAVERESTORE -DGAME_DLL -Dsprintf=use_Q_snprintf_instead_of_sprintf -DVECTOR -Dstrncpy=use_Q_strncpy_instead -D_snprintf=use_Q_snprintf_instead -DPROTECTED_THINGS_ENABLE -DVERSION_SAFE_STEAM_API_INTERFACES 
+
+SERVER_OBJS= \
+	$(SERVER_OBJ_DIR)/actanimating.o \
+	$(SERVER_OBJ_DIR)/ai_activity.o \
+	$(SERVER_OBJ_DIR)/ai_baseactor.o \
+	$(SERVER_OBJ_DIR)/ai_basehumanoid.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_flyer.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_flyer_new.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_movement.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_physicsflyer.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_schedule.o \
+	$(SERVER_OBJ_DIR)/ai_basenpc_squad.o \
+	$(SERVER_OBJ_DIR)/ai_behavior.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_assault.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_fear.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_follow.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_lead.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_rappel.o \
+	$(SERVER_OBJ_DIR)/ai_behavior_standoff.o \
+	$(SERVER_OBJ_DIR)/ai_blended_movement.o \
+	$(SERVER_OBJ_DIR)/ai_concommands.o \
+	$(SERVER_OBJ_DIR)/ai_condition.o \
+	$(SERVER_OBJ_DIR)/AI_Criteria.o \
+	$(SERVER_OBJ_DIR)/ai_default.o \
+	$(SERVER_OBJ_DIR)/ai_dynamiclink.o \
+	$(SERVER_OBJ_DIR)/ai_event.o \
+	$(SERVER_OBJ_DIR)/ai_eventresponse.o \
+	$(SERVER_OBJ_DIR)/ai_goalentity.o \
+	$(SERVER_OBJ_DIR)/ai_hint.o \
+	$(SERVER_OBJ_DIR)/ai_hull.o \
+	$(SERVER_OBJ_DIR)/ai_initutils.o \
+	$(SERVER_OBJ_DIR)/AI_Interest_Target.o \
+	$(SERVER_OBJ_DIR)/ai_link.o \
+	$(SERVER_OBJ_DIR)/ai_localnavigator.o \
+	$(SERVER_OBJ_DIR)/ai_looktarget.o \
+	$(SERVER_OBJ_DIR)/ai_memory.o \
+	$(SERVER_OBJ_DIR)/ai_motor.o \
+	$(SERVER_OBJ_DIR)/ai_moveprobe.o \
+	$(SERVER_OBJ_DIR)/ai_moveshoot.o \
+	$(SERVER_OBJ_DIR)/ai_movesolver.o \
+	$(SERVER_OBJ_DIR)/ai_namespaces.o \
+	$(SERVER_OBJ_DIR)/ai_navigator.o \
+	$(SERVER_OBJ_DIR)/ai_network.o \
+	$(SERVER_OBJ_DIR)/ai_networkmanager.o \
+	$(SERVER_OBJ_DIR)/ai_node.o \
+	$(SERVER_OBJ_DIR)/ai_pathfinder.o \
+	$(SERVER_OBJ_DIR)/ai_planesolver.o \
+	$(SERVER_OBJ_DIR)/ai_playerally.o \
+	$(SERVER_OBJ_DIR)/ai_relationship.o \
+	$(SERVER_OBJ_DIR)/AI_ResponseSystem.o \
+	$(SERVER_OBJ_DIR)/ai_route.o \
+	$(SERVER_OBJ_DIR)/ai_saverestore.o \
+	$(SERVER_OBJ_DIR)/ai_schedule.o \
+	$(SERVER_OBJ_DIR)/ai_scriptconditions.o \
+	$(SERVER_OBJ_DIR)/ai_senses.o \
+	$(SERVER_OBJ_DIR)/ai_sentence.o \
+	$(SERVER_OBJ_DIR)/ai_speech.o \
+	$(SERVER_OBJ_DIR)/ai_speechfilter.o \
+	$(SERVER_OBJ_DIR)/ai_squad.o \
+	$(SERVER_OBJ_DIR)/ai_squadslot.o \
+	$(SERVER_OBJ_DIR)/ai_tacticalservices.o \
+	$(SERVER_OBJ_DIR)/ai_task.o \
+	$(SERVER_OBJ_DIR)/ai_trackpather.o \
+	$(SERVER_OBJ_DIR)/ai_utils.o \
+	$(SERVER_OBJ_DIR)/ai_waypoint.o \
+	$(SERVER_OBJ_DIR)/base_transmit_proxy.o \
+	$(SERVER_OBJ_DIR)/baseanimating.o \
+	$(SERVER_OBJ_DIR)/BaseAnimatingOverlay.o \
+	$(SERVER_OBJ_DIR)/basecombatcharacter.o \
+	$(SERVER_OBJ_DIR)/basecombatweapon.o \
+	$(SERVER_OBJ_DIR)/baseentity.o \
+	$(SERVER_OBJ_DIR)/baseflex.o \
+	$(SERVER_OBJ_DIR)/basegrenade_concussion.o \
+	$(SERVER_OBJ_DIR)/basegrenade_contact.o \
+	$(SERVER_OBJ_DIR)/basegrenade_timed.o \
+	$(SERVER_OBJ_DIR)/basemultiplayerplayer.o \
+	$(SERVER_OBJ_DIR)/baseprojectile.o \
+	$(SERVER_OBJ_DIR)/baseviewmodel.o \
+	$(SERVER_OBJ_DIR)/bitstring.o \
+	$(SERVER_OBJ_DIR)/bmodels.o \
+	$(SERVER_OBJ_DIR)/buttons.o \
+	$(SERVER_OBJ_DIR)/cbase.o \
+	$(SERVER_OBJ_DIR)/client.o \
+	$(SERVER_OBJ_DIR)/colorcorrection.o \
+	$(SERVER_OBJ_DIR)/colorcorrectionvolume.o \
+	$(SERVER_OBJ_DIR)/CommentarySystem.o \
+	$(SERVER_OBJ_DIR)/controlentities.o \
+	$(SERVER_OBJ_DIR)/cplane.o \
+	$(SERVER_OBJ_DIR)/CRagdollMagnet.o \
+	$(SERVER_OBJ_DIR)/damagemodifier.o \
+	$(SERVER_OBJ_DIR)/doors.o \
+	$(SERVER_OBJ_DIR)/dynamiclight.o \
+	$(SERVER_OBJ_DIR)/effects.o \
+	$(SERVER_OBJ_DIR)/EffectsServer.o \
+	$(SERVER_OBJ_DIR)/entityblocker.o \
+	$(SERVER_OBJ_DIR)/EntityDissolve.o \
+	$(SERVER_OBJ_DIR)/EntityFlame.o \
+	$(SERVER_OBJ_DIR)/entitylist.o \
+	$(SERVER_OBJ_DIR)/EntityParticleTrail.o \
+	$(SERVER_OBJ_DIR)/env_debughistory.o \
+	$(SERVER_OBJ_DIR)/env_effectsscript.o \
+	$(SERVER_OBJ_DIR)/env_entity_maker.o \
+	$(SERVER_OBJ_DIR)/env_particlescript.o \
+	$(SERVER_OBJ_DIR)/env_player_surface_trigger.o \
+	$(SERVER_OBJ_DIR)/env_projectedtexture.o \
+	$(SERVER_OBJ_DIR)/env_screenoverlay.o \
+	$(SERVER_OBJ_DIR)/env_texturetoggle.o \
+	$(SERVER_OBJ_DIR)/env_tonemap_controller.o \
+	$(SERVER_OBJ_DIR)/env_zoom.o \
+	$(SERVER_OBJ_DIR)/EnvBeam.o \
+	$(SERVER_OBJ_DIR)/EnvFade.o \
+	$(SERVER_OBJ_DIR)/EnvHudHint.o \
+	$(SERVER_OBJ_DIR)/EnvLaser.o \
+	$(SERVER_OBJ_DIR)/EnvMessage.o \
+	$(SERVER_OBJ_DIR)/envmicrophone.o \
+	$(SERVER_OBJ_DIR)/EnvShake.o \
+	$(SERVER_OBJ_DIR)/EnvSpark.o \
+	$(SERVER_OBJ_DIR)/EventLog.o \
+	$(SERVER_OBJ_DIR)/explode.o \
+	$(SERVER_OBJ_DIR)/filters.o \
+	$(SERVER_OBJ_DIR)/fire.o \
+	$(SERVER_OBJ_DIR)/fire_smoke.o \
+	$(SERVER_OBJ_DIR)/fish.o \
+	$(SERVER_OBJ_DIR)/fogcontroller.o \
+	$(SERVER_OBJ_DIR)/forcefeedback.o \
+	$(SERVER_OBJ_DIR)/fourwheelvehiclephysics.o \
+	$(SERVER_OBJ_DIR)/func_areaportal.o \
+	$(SERVER_OBJ_DIR)/func_areaportalbase.o \
+	$(SERVER_OBJ_DIR)/func_areaportalwindow.o \
+	$(SERVER_OBJ_DIR)/func_break.o \
+	$(SERVER_OBJ_DIR)/func_breakablesurf.o \
+	$(SERVER_OBJ_DIR)/func_dust.o \
+	$(SERVER_OBJ_DIR)/func_ladder_endpoint.o \
+	$(SERVER_OBJ_DIR)/func_lod.o \
+	$(SERVER_OBJ_DIR)/func_movelinear.o \
+	$(SERVER_OBJ_DIR)/func_occluder.o \
+	$(SERVER_OBJ_DIR)/func_reflective_glass.o \
+	$(SERVER_OBJ_DIR)/func_smokevolume.o \
+	$(SERVER_OBJ_DIR)/game.o \
+	$(SERVER_OBJ_DIR)/game_ui.o \
+	$(SERVER_OBJ_DIR)/gamehandle.o \
+	$(SERVER_OBJ_DIR)/gameinterface.o \
+	$(SERVER_OBJ_DIR)/GameStats_BasicStatsFunctions.o \
+	$(SERVER_OBJ_DIR)/gametrace_dll.o \
+	$(SERVER_OBJ_DIR)/gameweaponmanager.o \
+	$(SERVER_OBJ_DIR)/genericactor.o \
+	$(SERVER_OBJ_DIR)/genericmonster.o \
+	$(SERVER_OBJ_DIR)/gib.o \
+	$(SERVER_OBJ_DIR)/globals.o \
+	$(SERVER_OBJ_DIR)/globalstate.o \
+	$(SERVER_OBJ_DIR)/grenadethrown.o \
+	$(SERVER_OBJ_DIR)/guntarget.o \
+	$(SERVER_OBJ_DIR)/h_ai.o \
+	$(SERVER_OBJ_DIR)/h_export.o \
+	$(SERVER_OBJ_DIR)/hierarchy.o \
+	$(SERVER_OBJ_DIR)/hltvdirector.o \
+	$(SERVER_OBJ_DIR)/info_camera_link.o \
+	$(SERVER_OBJ_DIR)/info_overlay_accessor.o \
+	$(SERVER_OBJ_DIR)/init_factory.o \
+	$(SERVER_OBJ_DIR)/intermission.o \
+	$(SERVER_OBJ_DIR)/item_world.o \
+	$(SERVER_OBJ_DIR)/lightglow.o \
+	$(SERVER_OBJ_DIR)/lights.o \
+	$(SERVER_OBJ_DIR)/logic_achievement.o \
+	$(SERVER_OBJ_DIR)/logic_measure_movement.o \
+	$(SERVER_OBJ_DIR)/logic_mirror_movement.o \
+	$(SERVER_OBJ_DIR)/logic_navigation.o \
+	$(SERVER_OBJ_DIR)/logicauto.o \
+	$(SERVER_OBJ_DIR)/logicentities.o \
+	$(SERVER_OBJ_DIR)/logicrelay.o \
+	$(SERVER_OBJ_DIR)/mapentities.o \
+	$(SERVER_OBJ_DIR)/maprules.o \
+	$(SERVER_OBJ_DIR)/MaterialModifyControl.o \
+	$(SERVER_OBJ_DIR)/message_entity.o \
+	$(SERVER_OBJ_DIR)/modelentities.o \
+	$(SERVER_OBJ_DIR)/monstermaker.o \
+	$(SERVER_OBJ_DIR)/movehelper_server.o \
+	$(SERVER_OBJ_DIR)/movement.o \
+	$(SERVER_OBJ_DIR)/nav_area.o \
+	$(SERVER_OBJ_DIR)/nav_colors.o \
+	$(SERVER_OBJ_DIR)/nav_edit.o \
+	$(SERVER_OBJ_DIR)/nav_file.o \
+	$(SERVER_OBJ_DIR)/nav_generate.o \
+	$(SERVER_OBJ_DIR)/nav_ladder.o \
+	$(SERVER_OBJ_DIR)/nav_mesh.o \
+	$(SERVER_OBJ_DIR)/nav_node.o \
+	$(SERVER_OBJ_DIR)/ndebugoverlay.o \
+	$(SERVER_OBJ_DIR)/npc_talker.o \
+	$(SERVER_OBJ_DIR)/npc_vehicledriver.o \
+	$(SERVER_OBJ_DIR)/particle_light.o \
+	$(SERVER_OBJ_DIR)/particle_system.o \
+	$(SERVER_OBJ_DIR)/pathcorner.o \
+	$(SERVER_OBJ_DIR)/pathtrack.o \
+	$(SERVER_OBJ_DIR)/phys_controller.o \
+	$(SERVER_OBJ_DIR)/physconstraint.o \
+	$(SERVER_OBJ_DIR)/physics.o \
+	$(SERVER_OBJ_DIR)/physics_bone_follower.o \
+	$(SERVER_OBJ_DIR)/physics_cannister.o \
+	$(SERVER_OBJ_DIR)/physics_fx.o \
+	$(SERVER_OBJ_DIR)/physics_impact_damage.o \
+	$(SERVER_OBJ_DIR)/physics_main.o \
+	$(SERVER_OBJ_DIR)/physics_npc_solver.o \
+	$(SERVER_OBJ_DIR)/physics_prop_ragdoll.o \
+	$(SERVER_OBJ_DIR)/physobj.o \
+	$(SERVER_OBJ_DIR)/player.o \
+	$(SERVER_OBJ_DIR)/player_command.o \
+	$(SERVER_OBJ_DIR)/player_lagcompensation.o \
+	$(SERVER_OBJ_DIR)/player_pickup.o \
+	$(SERVER_OBJ_DIR)/player_resource.o \
+	$(SERVER_OBJ_DIR)/playerinfomanager.o \
+	$(SERVER_OBJ_DIR)/playerlocaldata.o \
+	$(SERVER_OBJ_DIR)/plugin_check.o \
+	$(SERVER_OBJ_DIR)/point_camera.o \
+	$(SERVER_OBJ_DIR)/point_devshot_camera.o \
+	$(SERVER_OBJ_DIR)/point_playermoveconstraint.o \
+	$(SERVER_OBJ_DIR)/point_spotlight.o \
+	$(SERVER_OBJ_DIR)/point_template.o \
+	$(SERVER_OBJ_DIR)/pointanglesensor.o \
+	$(SERVER_OBJ_DIR)/PointAngularVelocitySensor.o \
+	$(SERVER_OBJ_DIR)/pointhurt.o \
+	$(SERVER_OBJ_DIR)/pointteleport.o \
+	$(SERVER_OBJ_DIR)/props.o \
+	$(SERVER_OBJ_DIR)/ragdoll_manager.o \
+	$(SERVER_OBJ_DIR)/RagdollBoogie.o \
+	$(SERVER_OBJ_DIR)/recipientfilter.o \
+	$(SERVER_OBJ_DIR)/rope.o \
+	$(SERVER_OBJ_DIR)/saverestore_gamedll.o \
+	$(SERVER_OBJ_DIR)/sceneentity.o \
+	$(SERVER_OBJ_DIR)/scratchpad_gamedll_helpers.o \
+	$(SERVER_OBJ_DIR)/scripted.o \
+	$(SERVER_OBJ_DIR)/scriptedtarget.o \
+	$(SERVER_OBJ_DIR)/sendproxy.o \
+	$(SERVER_OBJ_DIR)/serverbenchmark_base.o \
+	$(SERVER_OBJ_DIR)/ServerNetworkProperty.o \
+	$(SERVER_OBJ_DIR)/shadowcontrol.o \
+	$(SERVER_OBJ_DIR)/SkyCamera.o \
+	$(SERVER_OBJ_DIR)/slideshow_display.o \
+	$(SERVER_OBJ_DIR)/sound.o \
+	$(SERVER_OBJ_DIR)/soundent.o \
+	$(SERVER_OBJ_DIR)/soundscape.o \
+	$(SERVER_OBJ_DIR)/soundscape_system.o \
+	$(SERVER_OBJ_DIR)/spotlightend.o \
+	$(SERVER_OBJ_DIR)/sprite_perfmonitor.o \
+	$(SERVER_OBJ_DIR)/subs.o \
+	$(SERVER_OBJ_DIR)/sun.o \
+	$(SERVER_OBJ_DIR)/tanktrain.o \
+	$(SERVER_OBJ_DIR)/te_beamfollow.o \
+	$(SERVER_OBJ_DIR)/te_clientprojectile.o \
+	$(SERVER_OBJ_DIR)/te_effect_dispatch.o \
+	$(SERVER_OBJ_DIR)/team.o \
+	$(SERVER_OBJ_DIR)/team_control_point.o \
+	$(SERVER_OBJ_DIR)/team_control_point_master.o \
+	$(SERVER_OBJ_DIR)/team_control_point_round.o \
+	$(SERVER_OBJ_DIR)/team_objectiveresource.o \
+	$(SERVER_OBJ_DIR)/TemplateEntities.o \
+	$(SERVER_OBJ_DIR)/tesla.o \
+	$(SERVER_OBJ_DIR)/test_proxytoggle.o \
+	$(SERVER_OBJ_DIR)/test_stressentities.o \
+	$(SERVER_OBJ_DIR)/testfunctions.o \
+	$(SERVER_OBJ_DIR)/testtraceline.o \
+	$(SERVER_OBJ_DIR)/textstatsmgr.o \
+	$(SERVER_OBJ_DIR)/timedeventmgr.o \
+	$(SERVER_OBJ_DIR)/trains.o \
+	$(SERVER_OBJ_DIR)/trigger_area_capture.o \
+	$(SERVER_OBJ_DIR)/triggers.o \
+	$(SERVER_OBJ_DIR)/util.o \
+	$(SERVER_OBJ_DIR)/variant_t.o \
+	$(SERVER_OBJ_DIR)/vehicle_base.o \
+	$(SERVER_OBJ_DIR)/vehicle_baseserver.o \
+	$(SERVER_OBJ_DIR)/vguiscreen.o \
+	$(SERVER_OBJ_DIR)/waterbullet.o \
+	$(SERVER_OBJ_DIR)/WaterLODControl.o \
+	$(SERVER_OBJ_DIR)/wcedit.o \
+	$(SERVER_OBJ_DIR)/weight_button.o \
+	$(SERVER_OBJ_DIR)/world.o \
+	$(SERVER_OBJ_DIR)/stdafx.o \
+	$(SERVER_OBJ_DIR)/basetempentity.o \
+	$(SERVER_OBJ_DIR)/event_tempentity_tester.o \
+	$(SERVER_OBJ_DIR)/movie_explosion.o \
+	$(SERVER_OBJ_DIR)/particle_fire.o \
+	$(SERVER_OBJ_DIR)/particle_smokegrenade.o \
+	$(SERVER_OBJ_DIR)/plasma.o \
+	$(SERVER_OBJ_DIR)/smoke_trail.o \
+	$(SERVER_OBJ_DIR)/smokestack.o \
+	$(SERVER_OBJ_DIR)/steamjet.o \
+	$(SERVER_OBJ_DIR)/te.o \
+	$(SERVER_OBJ_DIR)/te_armorricochet.o \
+	$(SERVER_OBJ_DIR)/te_basebeam.o \
+	$(SERVER_OBJ_DIR)/te_beamentpoint.o \
+	$(SERVER_OBJ_DIR)/te_beaments.o \
+	$(SERVER_OBJ_DIR)/te_beamlaser.o \
+	$(SERVER_OBJ_DIR)/te_beampoints.o \
+	$(SERVER_OBJ_DIR)/te_beamring.o \
+	$(SERVER_OBJ_DIR)/te_beamringpoint.o \
+	$(SERVER_OBJ_DIR)/te_beamspline.o \
+	$(SERVER_OBJ_DIR)/te_bloodsprite.o \
+	$(SERVER_OBJ_DIR)/te_bloodstream.o \
+	$(SERVER_OBJ_DIR)/te_breakmodel.o \
+	$(SERVER_OBJ_DIR)/te_bspdecal.o \
+	$(SERVER_OBJ_DIR)/te_bubbles.o \
+	$(SERVER_OBJ_DIR)/te_bubbletrail.o \
+	$(SERVER_OBJ_DIR)/te_decal.o \
+	$(SERVER_OBJ_DIR)/te_dynamiclight.o \
+	$(SERVER_OBJ_DIR)/te_energysplash.o \
+	$(SERVER_OBJ_DIR)/te_explosion.o \
+	$(SERVER_OBJ_DIR)/te_fizz.o \
+	$(SERVER_OBJ_DIR)/te_footprintdecal.o \
+	$(SERVER_OBJ_DIR)/te_glassshatter.o \
+	$(SERVER_OBJ_DIR)/te_glowsprite.o \
+	$(SERVER_OBJ_DIR)/te_impact.o \
+	$(SERVER_OBJ_DIR)/te_killplayerattachments.o \
+	$(SERVER_OBJ_DIR)/te_largefunnel.o \
+	$(SERVER_OBJ_DIR)/te_muzzleflash.o \
+	$(SERVER_OBJ_DIR)/te_particlesystem.o \
+	$(SERVER_OBJ_DIR)/te_physicsprop.o \
+	$(SERVER_OBJ_DIR)/te_playerdecal.o \
+	$(SERVER_OBJ_DIR)/te_projecteddecal.o \
+	$(SERVER_OBJ_DIR)/te_showline.o \
+	$(SERVER_OBJ_DIR)/te_smoke.o \
+	$(SERVER_OBJ_DIR)/te_sparks.o \
+	$(SERVER_OBJ_DIR)/te_sprite.o \
+	$(SERVER_OBJ_DIR)/te_spritespray.o \
+	$(SERVER_OBJ_DIR)/te_worlddecal.o \
+	$(SERVER_OBJ_DIR)/entity_tools_server.o \
+	$(SERVER_OBJ_DIR)/toolframework_server.o \
+
+
+SERVER___SRC_COMMON_OBJS= \
+	$(SERVER___SRC_COMMON_OBJ_DIR)/randoverride.o \
+
+
+SERVER___SRC_PUBLIC_OBJS= \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/bone_setup.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/collisionutils.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/dt_send.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/dt_utlvector_common.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/dt_utlvector_send.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/editor_sendcommand.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/filesystem_helpers.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/interpolatortypes.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/map_utils.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/networkvar.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/registry.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/rope_physics.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/scratchpad3d.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/ScratchPadUtils.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/server_class.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/simple_physics.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/SoundParametersInternal.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/stringregistry.o \
+	$(SERVER___SRC_PUBLIC_OBJ_DIR)/studio.o \
+
+
+SERVER___SRC_PUBLIC_KEYFRAME_OBJS= \
+	$(SERVER___SRC_PUBLIC_KEYFRAME_OBJ_DIR)/keyframe.o \
+
+
+SERVER___SRC_PUBLIC_TIER0_OBJS= \
+	$(SERVER___SRC_PUBLIC_TIER0_OBJ_DIR)/memoverride.o \
+
+
+SERVER___SRC_TIER1_OBJS= \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/bitbuf.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/characterset.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/checksum_crc.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/checksum_md5.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/convar.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/interface.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/mempool.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/stringpool.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/utlbuffer.o \
+	$(SERVER___SRC_TIER1_OBJ_DIR)/utlsymbol.o \
+
+
+SERVER__SHARED_OBJS= \
+	$(SERVER__SHARED_OBJ_DIR)/achievement_saverestore.o \
+	$(SERVER__SHARED_OBJ_DIR)/achievementmgr.o \
+	$(SERVER__SHARED_OBJ_DIR)/achievements_hlx.o \
+	$(SERVER__SHARED_OBJ_DIR)/activitylist.o \
+	$(SERVER__SHARED_OBJ_DIR)/ammodef.o \
+	$(SERVER__SHARED_OBJ_DIR)/animation.o \
+	$(SERVER__SHARED_OBJ_DIR)/base_playeranimstate.o \
+	$(SERVER__SHARED_OBJ_DIR)/baseachievement.o \
+	$(SERVER__SHARED_OBJ_DIR)/basecombatcharacter_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/basecombatweapon_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/baseentity_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/basegrenade_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/baseparticleentity.o \
+	$(SERVER__SHARED_OBJ_DIR)/baseplayer_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/baseviewmodel_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/beam_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/collisionproperty.o \
+	$(SERVER__SHARED_OBJ_DIR)/death_pose.o \
+	$(SERVER__SHARED_OBJ_DIR)/debugoverlay_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/decals.o \
+	$(SERVER__SHARED_OBJ_DIR)/effect_dispatch_data.o \
+	$(SERVER__SHARED_OBJ_DIR)/ehandle.o \
+	$(SERVER__SHARED_OBJ_DIR)/entitylist_base.o \
+	$(SERVER__SHARED_OBJ_DIR)/EntityParticleTrail_Shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/env_detail_controller.o \
+	$(SERVER__SHARED_OBJ_DIR)/env_wind_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/eventlist.o \
+	$(SERVER__SHARED_OBJ_DIR)/func_ladder.o \
+	$(SERVER__SHARED_OBJ_DIR)/gamemovement.o \
+	$(SERVER__SHARED_OBJ_DIR)/gamerules.o \
+	$(SERVER__SHARED_OBJ_DIR)/gamerules_register.o \
+	$(SERVER__SHARED_OBJ_DIR)/GameStats.o \
+	$(SERVER__SHARED_OBJ_DIR)/gamestringpool.o \
+	$(SERVER__SHARED_OBJ_DIR)/gamevars_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/hintmessage.o \
+	$(SERVER__SHARED_OBJ_DIR)/hintsystem.o \
+	$(SERVER__SHARED_OBJ_DIR)/igamesystem.o \
+	$(SERVER__SHARED_OBJ_DIR)/interval.o \
+	$(SERVER__SHARED_OBJ_DIR)/mapentities_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/ModelSoundsCache.o \
+	$(SERVER__SHARED_OBJ_DIR)/movevars_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/mp_shareddefs.o \
+	$(SERVER__SHARED_OBJ_DIR)/multiplay_gamerules.o \
+	$(SERVER__SHARED_OBJ_DIR)/obstacle_pushaway.o \
+	$(SERVER__SHARED_OBJ_DIR)/particle_parse.o \
+	$(SERVER__SHARED_OBJ_DIR)/particlesystemquery.o \
+	$(SERVER__SHARED_OBJ_DIR)/physics_main_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/physics_saverestore.o \
+	$(SERVER__SHARED_OBJ_DIR)/physics_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/point_bonusmaps_accessor.o \
+	$(SERVER__SHARED_OBJ_DIR)/precache_register.o \
+	$(SERVER__SHARED_OBJ_DIR)/predictableid.o \
+	$(SERVER__SHARED_OBJ_DIR)/predicted_viewmodel.o \
+	$(SERVER__SHARED_OBJ_DIR)/predictioncopy.o \
+	$(SERVER__SHARED_OBJ_DIR)/props_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/ragdoll_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/rope_helpers.o \
+	$(SERVER__SHARED_OBJ_DIR)/saverestore.o \
+	$(SERVER__SHARED_OBJ_DIR)/SceneCache.o \
+	$(SERVER__SHARED_OBJ_DIR)/sceneentity_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/script_intro_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/sequence_Transitioner.o \
+	$(SERVER__SHARED_OBJ_DIR)/sheetsimulator.o \
+	$(SERVER__SHARED_OBJ_DIR)/simtimer.o \
+	$(SERVER__SHARED_OBJ_DIR)/singleplay_gamerules.o \
+	$(SERVER__SHARED_OBJ_DIR)/SoundEmitterSystem.o \
+	$(SERVER__SHARED_OBJ_DIR)/soundenvelope.o \
+	$(SERVER__SHARED_OBJ_DIR)/Sprite.o \
+	$(SERVER__SHARED_OBJ_DIR)/studio_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/takedamageinfo.o \
+	$(SERVER__SHARED_OBJ_DIR)/teamplay_gamerules.o \
+	$(SERVER__SHARED_OBJ_DIR)/test_ehandle.o \
+	$(SERVER__SHARED_OBJ_DIR)/usercmd.o \
+	$(SERVER__SHARED_OBJ_DIR)/util_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/vehicle_viewblend_shared.o \
+	$(SERVER__SHARED_OBJ_DIR)/voice_gamemgr.o \
+	$(SERVER__SHARED_OBJ_DIR)/weapon_parse.o \
+	$(SERVER__SHARED_OBJ_DIR)/weapon_proficiency.o \
+	$(SERVER__SHARED_OBJ_DIR)/SpriteTrail.o \
+	$(SERVER__SHARED_OBJ_DIR)/usermessages.o \
+	$(SERVER__SHARED_OBJ_DIR)/basemeleeweapon.o \
+	$(SERVER__SHARED_OBJ_DIR)/point_posecontroller.o \
+	$(SERVER__SHARED_OBJ_DIR)/teamplay_round_timer.o \
+	$(SERVER__SHARED_OBJ_DIR)/teamplayroundbased_gamerules.o \
+	$(SERVER__SHARED_OBJ_DIR)/func_latch.o \
+	$(SERVER__SHARED_OBJ_DIR)/runes.o \
+	$(SERVER__SHARED_OBJ_DIR)/runes_parse.o \
+
+
+SERVER__SHARED_CF_OBJS= \
+	$(SERVER__SHARED_CF_OBJ_DIR)/armament.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_basegrenade_projectile.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_gamemovement.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_gamerules.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_player_shared.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_playeranimstate.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_shareddefs.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_takedamageinfo.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_usermessages.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/cf_weapon_parse.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/statistics.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_cfbase.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_cfbasemelee.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_draingrenade.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_flag.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_magic.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_pariah.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_pistol.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_rifle.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_rivenblade.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_shotgun.o \
+	$(SERVER__SHARED_CF_OBJ_DIR)/weapon_valangard.o \
+
+
+SERVER__SHARED_CF_BOT_OBJS= \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/bot.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/bot_hide.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/bot_manager.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/bot_profile.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/bot_util.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/nav_path.o \
+	$(SERVER__SHARED_CF_BOT_OBJ_DIR)/shared_util.o \
+
+
+SERVER__SHARED_MULTIPLAYER_OBJS= \
+	$(SERVER__SHARED_MULTIPLAYER_OBJ_DIR)/multiplayer_animstate.o \
+
+
+SERVER_CF_OBJS= \
+	$(SERVER_CF_OBJ_DIR)/cf_client.o \
+	$(SERVER_CF_OBJ_DIR)/cf_env_sparkler.o \
+	$(SERVER_CF_OBJ_DIR)/cf_eventlog.o \
+	$(SERVER_CF_OBJ_DIR)/cf_gameinterface.o \
+	$(SERVER_CF_OBJ_DIR)/cf_objective_resource.o \
+	$(SERVER_CF_OBJ_DIR)/cf_player.o \
+	$(SERVER_CF_OBJ_DIR)/cf_player_resource.o \
+	$(SERVER_CF_OBJ_DIR)/cf_playermove.o \
+	$(SERVER_CF_OBJ_DIR)/cf_spawnpoint.o \
+	$(SERVER_CF_OBJ_DIR)/cf_team.o \
+	$(SERVER_CF_OBJ_DIR)/cf_triggers.o \
+	$(SERVER_CF_OBJ_DIR)/objectives.o \
+	$(SERVER_CF_OBJ_DIR)/te_firebullets.o \
+
+
+SERVER_CF_BOT_OBJS= \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_chatter.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_event.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_event_bomb.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_event_player.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_event_weapon.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_init.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_listen.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_manager.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_nav.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_pathfind.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_radio.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_statemachine.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_update.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_vision.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_bot_weapon.o \
+	$(SERVER_CF_BOT_OBJ_DIR)/cf_gamestate.o \
+
+
+SERVER_CF_BOT_STATES_OBJS= \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_attack.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_buy.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_defuse_bomb.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_escape_from_bomb.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_fetch_bomb.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_follow.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_hide.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_hunt.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_idle.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_investigate_noise.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_move_to.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_open_door.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_plant_bomb.o \
+	$(SERVER_CF_BOT_STATES_OBJ_DIR)/cf_bot_use_entity.o \
+
+
+
+
+all: dirs $(NAME)_$(ARCH).$(SHLIBEXT)
+
+dirs:
+	-mkdir -p $(SERVER_OBJ_DIR)
+	-mkdir -p $(SERVER___SRC_COMMON_OBJ_DIR)
+	-mkdir -p $(SERVER___SRC_PUBLIC_OBJ_DIR)
+	-mkdir -p $(SERVER___SRC_PUBLIC_KEYFRAME_OBJ_DIR)
+	-mkdir -p $(SERVER___SRC_PUBLIC_TIER0_OBJ_DIR)
+	-mkdir -p $(SERVER___SRC_TIER1_OBJ_DIR)
+	-mkdir -p $(SERVER__SHARED_OBJ_DIR)
+	-mkdir -p $(SERVER__SHARED_CF_OBJ_DIR)
+	-mkdir -p $(SERVER__SHARED_CF_BOT_OBJ_DIR)
+	-mkdir -p $(SERVER__SHARED_MULTIPLAYER_OBJ_DIR)
+	-mkdir -p $(SERVER_CF_OBJ_DIR)
+	-mkdir -p $(SERVER_CF_BOT_OBJ_DIR)
+	-mkdir -p $(SERVER_CF_BOT_STATES_OBJ_DIR)
+
+
+
+
+$(NAME)_$(ARCH).$(SHLIBEXT): $(SERVER_OBJS) $(SERVER___SRC_COMMON_OBJS) $(SERVER___SRC_PUBLIC_OBJS) $(SERVER___SRC_PUBLIC_KEYFRAME_OBJS) $(SERVER___SRC_PUBLIC_TIER0_OBJS) $(SERVER___SRC_TIER1_OBJS) $(SERVER__SHARED_OBJS) $(SERVER__SHARED_CF_OBJS) $(SERVER__SHARED_CF_BOT_OBJS) $(SERVER__SHARED_MULTIPLAYER_OBJS) $(SERVER_CF_OBJS) $(SERVER_CF_BOT_OBJS) $(SERVER_CF_BOT_STATES_OBJS) 
+	$(CLINK) $(SHLIBLDFLAGS) $(DEBUG) -o $(BUILD_DIR)/$@ $(SERVER_OBJS) $(SERVER___SRC_COMMON_OBJS) $(SERVER___SRC_PUBLIC_OBJS) $(SERVER___SRC_PUBLIC_KEYFRAME_OBJS) $(SERVER___SRC_PUBLIC_TIER0_OBJS) $(SERVER___SRC_TIER1_OBJS) $(SERVER__SHARED_OBJS) $(SERVER__SHARED_CF_OBJS) $(SERVER__SHARED_CF_BOT_OBJS) $(SERVER__SHARED_MULTIPLAYER_OBJS) $(SERVER_CF_OBJS) $(SERVER_CF_BOT_OBJS) $(SERVER_CF_BOT_STATES_OBJS) $(LDFLAGS) $(CPP_LIB)
+
+$(SERVER_OBJ_DIR)/%.o: $(SERVER_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER___SRC_COMMON_OBJ_DIR)/%.o: $(SERVER___SRC_COMMON_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER___SRC_PUBLIC_OBJ_DIR)/%.o: $(SERVER___SRC_PUBLIC_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER___SRC_PUBLIC_KEYFRAME_OBJ_DIR)/%.o: $(SERVER___SRC_PUBLIC_KEYFRAME_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER___SRC_PUBLIC_TIER0_OBJ_DIR)/%.o: $(SERVER___SRC_PUBLIC_TIER0_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER___SRC_TIER1_OBJ_DIR)/%.o: $(SERVER___SRC_TIER1_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER__SHARED_OBJ_DIR)/%.o: $(SERVER__SHARED_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER__SHARED_CF_OBJ_DIR)/%.o: $(SERVER__SHARED_CF_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER__SHARED_CF_BOT_OBJ_DIR)/%.o: $(SERVER__SHARED_CF_BOT_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER__SHARED_MULTIPLAYER_OBJ_DIR)/%.o: $(SERVER__SHARED_MULTIPLAYER_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER_CF_OBJ_DIR)/%.o: $(SERVER_CF_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER_CF_BOT_OBJ_DIR)/%.o: $(SERVER_CF_BOT_SRC_DIR)/%.cpp
+	$(DO_CC)
+
+$(SERVER_CF_BOT_STATES_OBJ_DIR)/%.o: $(SERVER_CF_BOT_STATES_SRC_DIR)/%.cpp
+	$(DO_CC)
+
